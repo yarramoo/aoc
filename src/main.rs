@@ -14,7 +14,7 @@ macro_rules! run_and_time {
 
 
 fn main() {
-    use aoc_2015::day_05 as day;
+    use aoc_2015::day_06 as day;
     let builder = ChallengeBuilder::new(day::DATA_PATH, day::Challenge::parse);
     let (challenge, parse_time) = run_and_time!(builder.parse(), "Parsing");
     let (answer_1, answer_1_time) = run_and_time!(challenge.solve_p1(), "Part 1");
