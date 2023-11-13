@@ -14,23 +14,26 @@ macro_rules! run_and_time {
 
 
 fn main() {
-    use aoc_2015::day_06 as day;
+    use aoc_2015::day_07 as day;
     let builder = ChallengeBuilder::new(day::DATA_PATH, day::Challenge::parse);
+    
     let (challenge, parse_time) = run_and_time!(builder.parse(), "Parsing");
-    let (answer_1, answer_1_time) = run_and_time!(challenge.solve_p1(), "Part 1");
-    let (answer_2, answer_2_time) = run_and_time!(challenge.solve_p2(), "Part 2");
     println!("Parsing: {:?}", parse_time);
+    
+
+    let (answer_1, answer_1_time) = run_and_time!(challenge.solve_p1(), "Part 1");
     println!("Part 1: {:?}; {:?}", answer_1, answer_1_time);
+
+    let (answer_2, answer_2_time) = run_and_time!(challenge.solve_p2(), "Part 2");
     println!("Part 2: {:?}; {:?}", answer_2, answer_2_time);
 
-    // for challenge in aoc_2015::days() {
-    //     println!("{:?}", challenge.solve_p1());
-    // }
+    for _challenge in aoc_2015::days() {
+        // println!("{:?}", challenge.solve_p1());
+    }
 }
 
 fn load_data(input_path: &str) -> String {
-    let data = read_to_string(input_path).expect("Could not read data");
-    data
+    read_to_string(input_path).expect("Could not read data")
 }
 
 
@@ -64,9 +67,9 @@ where
         ChallengeBuilder { data: load_data(input_path), parsing_function }
     }
 
-    fn with_data(data: String, parsing_function: fn(&str) -> T) -> Self {
-        ChallengeBuilder { data, parsing_function }
-    }
+    // fn with_data(data: String, parsing_function: fn(&str) -> T) -> Self {
+    //     ChallengeBuilder { data, parsing_function }
+    // }
 
     fn parse(self) -> T {
         (self.parsing_function)(&self.data)

@@ -1,6 +1,6 @@
 use crate::{IChallenge, Answer};
 
-pub const DATA_PATH: &str = &"src/aoc_2015/input/day_01";
+pub const DATA_PATH: &str = "src/aoc_2015/input/day_01";
 
 
 fn solve_1(input: &str) -> isize {
@@ -28,7 +28,7 @@ fn solve_2(input: &str) -> isize {
             return (i + 1) as isize;
         }
     }
-    return 0;
+    0
 }
 
 pub struct Challenge {

@@ -2,7 +2,7 @@ use std::str::FromStr;
 
 use crate::{IChallenge, Answer};
 
-pub const DATA_PATH: &str = &"src/aoc_2015/input/day_06";
+pub const DATA_PATH: &str = "src/aoc_2015/input/day_06";
 
 struct Coordinate {
     x: usize,

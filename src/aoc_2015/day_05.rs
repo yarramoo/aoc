@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use crate::{IChallenge, Answer};
 
-pub const DATA_PATH: &str = &"src/aoc_2015/input/day_05";
+pub const DATA_PATH: &str = "src/aoc_2015/input/day_05";
 
 fn is_nice(s: &str) -> bool {
     let forbidden = vec!["ab", "cd", "pq", "xy"];
@@ -28,7 +28,7 @@ fn is_nice(s: &str) -> bool {
             return true;
         }
     }
-    return false;
+    false
 }
 
 fn is_nice_2(s: &str) -> bool {

@@ -1,6 +1,6 @@
 use crate::{IChallenge, Answer};
 
-pub const DATA_PATH: &str = &"src/aoc_2015/input/day_02";
+pub const DATA_PATH: &str = "src/aoc_2015/input/day_02";
 
 pub struct Challenge {
     presents: Vec<PresentDims>,
@@ -10,7 +10,7 @@ impl IChallenge for Challenge {
     fn parse(data: &str) -> Challenge {
         let presents = data
             .lines()
-            .map(|l| PresentDims::from(l))
+            .map(PresentDims::from)
             .collect();
         Challenge { presents }
     }
@@ -56,14 +56,14 @@ impl From<&str> for PresentDims {
     }
 }
 
-fn solve_1(presents: &Vec<PresentDims>) -> usize {
+fn solve_1(presents: &[PresentDims]) -> usize {
     presents
         .iter()
         .map(|p| p.wrapping_paper())
         .sum()
 }
 
-fn solve_2(presents: &Vec<PresentDims>) -> usize {
+fn solve_2(presents: &[PresentDims]) -> usize {
     presents
         .iter()
         .map(|p| p.ribbon())
