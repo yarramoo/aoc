@@ -147,8 +147,8 @@ impl Connection {
             Input::Gate(gate) => match &gate {
                 Gate::AND(a, b)    => a.get_value(mapping) & b.get_value(mapping),
                 Gate::OR(a, b)     => a.get_value(mapping) | b.get_value(mapping),
-                Gate::LSHIFT(a, b) => a.get_value(mapping).overflowing_shl(b.get_value(mapping) as u32).0 ,
-                Gate::RSHIFT(a, b) => a.get_value(mapping).overflowing_shr(b.get_value(mapping) as u32).0,
+                Gate::LSHIFT(a, b) => a.get_value(mapping) << b.get_value(mapping),
+                Gate::RSHIFT(a, b) => a.get_value(mapping) >> b.get_value(mapping),
                 Gate::NOT(a)       => !a.get_value(mapping),
             },
             Input::Literal(literal) => match &literal {
