@@ -8,6 +8,7 @@ pub mod day_05;
 pub mod day_06;
 pub mod day_07;
 pub mod day_08;
+pub mod day_09;
 
 pub fn days() -> Vec<Box<dyn IChallenge>> {
     vec![
@@ -18,5 +19,7 @@ pub fn days() -> Vec<Box<dyn IChallenge>> {
         Box::new(day_05::Challenge::parse(&load_data(day_05::DATA_PATH))),
         Box::new(day_06::Challenge::parse(&load_data(day_06::DATA_PATH))),
         Box::new(day_07::Challenge::parse(&load_data(day_07::DATA_PATH))),
+        Box::new(day_08::Challenge::parse(&load_data(day_08::DATA_PATH))),
+        Box::new(day_09::Challenge::parse(&load_data(day_09::DATA_PATH))),
     ]
 }

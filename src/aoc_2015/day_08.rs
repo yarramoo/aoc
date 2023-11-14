@@ -6,11 +6,9 @@ fn count_chars(s: &str) -> usize {
     let mut total = 0;
     let mut chars = s.chars();
     while let Some(c) = chars.next() {
-        if c == '\\' {
-            if chars.next().unwrap() == 'x' {
-                let _ = chars.next();
-                let _ = chars.next();
-            }
+        if c == '\\' && chars.next().unwrap() == 'x' {
+            let _ = chars.next();
+            let _ = chars.next();
         }
         total += 1;
     }
