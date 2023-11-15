@@ -1,4 +1,3 @@
-use std::{collections::HashMap, panic::UnwindSafe};
 use fancy_regex::Regex;
 
 use crate::{IChallenge, Answer};
