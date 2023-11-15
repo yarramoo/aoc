@@ -1,61 +1,21 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, panic::UnwindSafe};
+use fancy_regex::Regex;
 
 use crate::{IChallenge, Answer};
 
 pub const DATA_PATH: &str = "src/aoc_2015/input/day_05";
 
 fn is_nice(s: &str) -> bool {
-    let forbidden = vec!["ab", "cd", "pq", "xy"];
-    for f in forbidden {
-        if s.contains(f) {
-            return false;
-        }
-    }
-    let mut vowels = 0;
-    let mut found_double = false;
-    let mut last_char = None;
-    for c in s.chars() {
-        if "aeiou".contains(c) { vowels += 1; }
-        
-        if let Some(last_char) = last_char {
-            if last_char == c {
-                found_double = true;
-            }
-        }
-        last_char = Some(c);
-
-        if found_double && vowels >= 3 {
-            return true;
-        }
-    }
-    false
+    let rule_1 = Regex::new(r"(.*[aeiou]){3}.*").unwrap();
+    let rule_2 = Regex::new(r"(.)\1").unwrap();
+    let rule_3 = Regex::new(r"ab|cd|pq|xy").unwrap();
+    rule_1.is_match(s).unwrap() && rule_2.is_match(s).unwrap() && !rule_3.is_match(s).unwrap()
 }
 
 fn is_nice_2(s: &str) -> bool {
-    // It contains a pair of any two letters that appears at least twice in the string without overlapping, 
-    // like xyxy (xy) or aabcdefgaa (aa), but not like aaa (aa, but it overlaps).
-    let mut pairs = HashMap::new();
-    let mut found_pair = false;
-    for (i, window) in s.as_bytes().windows(2).enumerate() {
-        if let Some(j) = pairs.get(window) {
-            if *j + 1 != i {
-                found_pair = true;
-                break;
-            } 
-        } else {
-            pairs.insert(window, i);
-        }
-    }
-    if !found_pair { return false; }
-
-    // It contains at least one letter which repeats with exactly one letter between them, like xyx, 
-    // abcdefeghi (efe), or even aaa.
-    for window in s.as_bytes().windows(3) {
-        if window[0] == window[2] {
-            return true;
-        }
-    }
-    false
+    let rule_1 = Regex::new(r"(..).*\1").unwrap();
+    let rule_2 = Regex::new(r"(.).\1").unwrap();
+    rule_1.is_match(s).unwrap() && rule_2.is_match(s).unwrap()
 }
 
 pub struct Challenge {
